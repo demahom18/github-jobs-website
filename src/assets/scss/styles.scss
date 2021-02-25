@@ -1,0 +1,24 @@
+@forward './mixins' as mix-*;
+@forward './variables' as var-*;
+@forward './utilities';
+
+@use './variables' as v;
+
+body {
+  font-family: 'Kumbh Sans', sans-serif;
+  overflow-x: hidden;
+  margin: 0 auto;
+  background: v.$gray-light;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+

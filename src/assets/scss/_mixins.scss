@@ -5,7 +5,7 @@
   $weight: inherit,
   $line: 100%,
   $style: normal,
-  $trasform: initial
+  $transform: initial
 ) {
   font-family: $family;
   font-size: $size;
@@ -21,6 +21,7 @@
   $wrap: '',
   $justify: '',
   $align: '',
+  $gap: 0,
   $basis: auto,
   $grow: 0,
   $shrink: 1,
@@ -31,6 +32,7 @@
   flex-wrap: $wrap;
   justify-content: $justify;
   align-items: $align;
+  gap: $gap;
 
   > * {
     flex-basis: $basis;

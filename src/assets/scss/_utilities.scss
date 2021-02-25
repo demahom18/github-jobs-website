@@ -1,0 +1,7 @@
+@use './variables' as v;
+
+.flex { display: flex }
+
+.text--gray { color: v.$gray }
+.text--violet { color: v.$violet }
+.text--gray-dark { color: v.$gray-dark }
