@@ -1,0 +1,46 @@
+/// Set the font properties of an element
+@mixin setFont(
+  $family: inherit,
+  $size: inherit,
+  $weight: inherit,
+  $line: 100%,
+  $style: normal,
+  $trasform: initial
+) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line;
+  font-style: $style;
+  text-transform: $transform;
+}
+
+/// Display an element in a flexbox
+@mixin flexBox(
+  $dir:'',
+  $wrap: '',
+  $justify: '',
+  $align: '',
+  $basis: auto,
+  $grow: 0,
+  $shrink: 1,
+  $maxwidth: auto
+) {
+  display: flex;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
+
+  > * {
+    flex-basis: $basis;
+    flex-grow: $grow;
+    flex-shrink: $shrink;
+    max-width: $maxwidth;
+  }
+}
+
+@mixin spacing() {
+  margin: $marg;
+  padding: $padd;
+}
