@@ -1,30 +1,24 @@
 <template>
   <header>
-    <!-- eslint-disable -->
-    <div class="bg">
-      <svg width="1981" height="161" viewBox="0 0 1981 161" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id="path1" d="M1981 0.455994H0V60.456C0 115.684 44.7715 160.456 100 160.456H1981V0.455994Z" fill="#5964E0"/>
-        <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1981" height="161">
-        <path id="path2" d="M1981 0.455994H0V60.456C0 115.684 44.7715 160.456 100 160.456H1981V0.455994Z" fill="white"/>
-        </mask>
-        <g mask="url(#mask0)">
-        <path id="path2" opacity="0.0813802" fill-rule="evenodd" clip-rule="evenodd" d="M1717.88 -96.9683C1739.01 -120.931 1778.21 -112.598 1787.76 -82.1151L1901.88 282.048C1911.26 311.984 1884.91 340.935 1854.23 334.413L1487.74 256.513C1457.05 249.991 1444.76 212.828 1465.51 189.296L1717.88 -96.9683Z" fill="white"/>
-        <path id="path3" opacity="0.0813802" fill-rule="evenodd" clip-rule="evenodd" d="M625.033 -288.886C621.915 -320.679 654.744 -343.666 683.553 -329.863L1027.71 -164.964C1056 -151.409 1059.21 -112.398 1033.51 -94.4041L726.598 120.501C700.9 138.495 665.339 122.138 662.277 90.917L625.033 -288.886Z" fill="white"/>
-        <path id="path4" opacity="0.0813802" fill-rule="evenodd" clip-rule="evenodd" d="M-125.461 -33.8033C-128.578 -65.5958 -95.7496 -88.5828 -66.9407 -74.7795L277.22 90.1189C305.511 103.674 308.718 142.685 283.02 160.679L-23.8959 375.584C-49.5936 393.578 -85.1552 377.222 -88.2168 346L-125.461 -33.8033Z" fill="white"/>
-        </g>
-      </svg>
-    </div>
     <h1>devjobs</h1>
     <div class="switcher">
+      <span>
+        <!--eslint-disable-next-line -->
+        <svg width="20" height="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 15.635c.33 0 .612.295.612.639v1.89c0 .344-.282.638-.612.638s-.612-.294-.612-.638v-1.89c0-.344.282-.639.612-.639zm-4.488-1.783c.27.262.27.68 0 .941L4.03 16.231a.698.698 0 01-.97 0 .649.649 0 010-.941l1.482-1.438c.27-.261.7-.261.97 0zm9.946 0l1.483 1.438c.27.261.27.68 0 .941a.698.698 0 01-.97 0l-1.483-1.438a.649.649 0 010-.94c.242-.262.674-.262.97 0zM10 4.552c1.396 0 2.685.525 3.598 1.4.913.85 1.504 2.05 1.504 3.35 0 1.3-.59 2.5-1.504 3.35a5.314 5.314 0 01-3.598 1.4c-1.396 0-2.685-.525-3.598-1.4-.913-.85-1.504-2.05-1.504-3.35 0-1.3.564-2.5 1.504-3.35A5.314 5.314 0 0110 4.552zM2.607 8.906c.355 0 .658.274.658.594 0 .32-.303.594-.658.594H.658C.304 10.094 0 9.82 0 9.5c0-.32.304-.594.658-.594h1.95zm16.735 0c.354 0 .658.274.658.594 0 .32-.304.594-.658.594h-1.95c-.354 0-.657-.274-.657-.594 0-.32.303-.594.658-.594h1.949zM4.03 2.77l1.482 1.438c.27.261.27.68 0 .94-.242.262-.674.262-.97 0L3.059 3.71a.649.649 0 010-.941c.27-.261.701-.261.97 0zm12.91 0c.27.261.27.68 0 .941l-1.482 1.438a.698.698 0 01-.97 0 .649.649 0 010-.941l1.482-1.438c.27-.261.701-.261.97 0zM10 .198c.33 0 .612.294.612.638v1.89c0 .344-.282.639-.612.639s-.612-.295-.612-.639V.836c0-.344.282-.638.612-.638z" fill="#FFF" fill-rule="nonzero"/></svg>
+      </span>
       <label class="switch">
         <input
           v-model="checked"
           type="checkbox"
           @change="$emit('switched', checked)"
         >
-      <span class="slider round" />
-    </label>
-    </div>
+        <span class="slider round" />
+      </label>
+      <span>
+        <!--eslint-disable-next-line -->
+        <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M6 0c1.516 0 2.925.566 3.978 1.523A3.979 3.979 0 008 1a4.014 4.014 0 00-2.821 1.179A3.927 3.927 0 004 5c0 1.095.463 2.105 1.179 2.821A3.927 3.927 0 008 9a4.034 4.034 0 003.974-3.548c.017.18.026.364.026.548a6.02 6.02 0 01-1.768 4.232A6.02 6.02 0 016 12a5.89 5.89 0 01-4.232-1.768A6.02 6.02 0 010 6a5.89 5.89 0 011.768-4.232A6.02 6.02 0 016 0z" fill="#FFF" fill-rule="nonzero"/></svg>
+      </span>
+   </div>
   </header>
 </template>
 
@@ -45,63 +39,68 @@ export default {
 header {
   position: relative;
   width: 100%;
-  height: 162px;
+  height: 160px;
   padding: 0 5vw;
+  background: url('../assets/bg.svg');
   @include style.mix-flexBox(
     $justify: space-between,
     $align: center
   );
-  .bg {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -5;
-  }
 
   h1 { color: white}
 }
+
+/**Switcher */
+.switcher {
+  @include style.mix-flexBox(
+    $align: center,
+    $justify: center
+  );
+  > * { padding: 0 1em;}
+}
+
 .switch {
   position: relative;
   display: block;
-  z-index: 10;
-  width: 64px;
-  height: 32px;
+  width: 48px;
+  height: 24px;
 }
 
 .switch input { display: none}
 
 .slider {
   position: absolute;
-  z-index: 10;
   cursor: pointer;
-  background: white;
+  top: 0;
+  left:0;
+  bottom:0;
+  right: 0;
+  background: #dfdfdf;
   transition: .5s;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, .5);
+  // box-shadow: 0px 0px 4px style.$var-violet-light;
 }
 .slider:before {
   position: absolute;
   content:'';
   bottom: 14px;
-  background-color: black;
+  background-color: style.$var-violet;
   transition: .5s;
 }
 input:checked + .slider {
-  background-color:black;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, .5);
+  background-color:style.$var-violet;
+  box-shadow: 0px 0px 0px 1px style.$var-violet-light;
 }
 input:checked + .slider::before {
-  transform: translate(32px, -50%);
-  background: white;
+  transform: translate(24px, -50%);
+  background: #dfdfdf;
 }
 
 .slider.round {
   border-radius: 30px;
 }
 .slider.round:before {
-  width: 40%;
-  height: 75%;
+  width: 35%;
+  height: 65%;
   top:50%;
   left:3px;
   transform: translateY(-50%);
