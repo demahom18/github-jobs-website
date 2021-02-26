@@ -2,8 +2,26 @@
 
 .flex { display: flex }
 
-.text--gray { color: v.$gray }
-.text--violet { color: v.$violet }
-.text--gray-dark { color: v.$gray-dark }
+.text {
+  &--gray { color: v.$gray ;}
+  &--violet { color: v.$violet }
+  &--gray-dark { color: v.$gray-dark }
+}
+.btn {
+  padding: 1em 1.8em; color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .3s all ease;
+  
+  &--violet { 
+    background: v.$violet; 
+    &:hover { background: v.$violet-light }
+  }
 
+  &--gray {
+    color: v.$violet;
+    background: v.$gray-light; 
+    &:hover { background: v.$violet-light; }
+  }
+}
 .round { border-radius: 6px;}

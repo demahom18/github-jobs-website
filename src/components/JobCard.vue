@@ -99,7 +99,7 @@ export default {
     @include style.mix-setFont(
       $size: 1.2rem,
       $weight: bold,
-      $line: 1.5rem
+      $line: 2rem
     );
   }
   p.flex {
