@@ -47,6 +47,8 @@ header {
     $align: center
   );
 
+  > * { transform: translateY(-1.5rem)}
+
   h1 { color: white; cursor: pointer}
 }
 

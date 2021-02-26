@@ -1,7 +1,7 @@
 <template>
   <div class="job-page">
     <div class="job--company round">
-      <img v-if="job.company_logo" :src="job.company_logo" :alt="job.company_logo + '\'s logo' ">
+      <img class="round" v-if="job.company_logo" :src="job.company_logo" :alt="job.company_logo + '\'s logo' ">
       <span v-else>No image</span>
       <div>
         <h2>{{ job.company }}</h2>
@@ -36,14 +36,14 @@ export default {
   setup () {
     const jobs = inject('jobs')
     const route = useRoute()
-
     const job = Array.from(jobs.value).find(job => job.id === route.params.id)
     const publishTime = route.params.publishTime
 
     const companyUrl = computed(() => {
       const urlSplitted = job.company_url ? job.company_url.split('/') : []
 
-      //  A url always start by https://... So length must be > 2
+      //  An url always start by https://... So length must be > 2
+      //  A RegExp would've been better
       if (urlSplitted.length < 2) return job.url
       else return job.company_url
     })
@@ -70,30 +70,34 @@ export default {
   &--description {
     background: white;
     padding: 4rem;
-    margin-top: 2rem;
     color: style.$var-gray-dark;
 
     p, li { line-height: 1.8rem}
     ul, li {padding-left: 1em }
 
-    strong, h2, h3, h4{
-      line-height: 5rem;
+    strong,h1, h2, h3, h4{
+      margin: 2rem 0;
       color: black;
+      font-size: 1.3rem;
     }
-    .job__title { line-height: 1 !important; }
+    .job__title {
+      line-height: 1.5 !important;
+      margin: 0;
+      max-width: 65%;
+    }
   }
 
   &--company {
     @include style.mix-flexBox(
       $align: center
     );
-    margin-top: 2rem;
+    transform:translateY(-40%);
     width:100%;
     background: white;
-    min-height: 140px;
+    height: 140px;
     position: relative;
 
-    img { width: 140px; height: auto }
+    img { max-width: 140px; max-height:100% }
 
     .btn {
       position: absolute;
@@ -102,7 +106,11 @@ export default {
       transform: translateY(-50%)
     }
 
-    h2 { padding-left: 12px;}
+    h2 {
+      padding-left: 1rem;
+      max-width: 80%;
+      line-height: 1.5;
+    }
   }
 
   &--infos {
