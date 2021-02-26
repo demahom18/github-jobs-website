@@ -1,30 +1,44 @@
 <template>
-  <div class="job-page">
-    <div class="job--company round">
-      <img class="round" v-if="job.company_logo" :src="job.company_logo" :alt="job.company_logo + '\'s logo' ">
-      <span v-else>No image</span>
-      <div>
-        <h2>{{ job.company }}</h2>
-        <!--TODO: REFORMAT the url <p>{{ job.company_url }}</p> -->
+  <div>
+    <div class="job-page">
+      <div class="job--company round">
+        <img class="round" v-if="job.company_logo" :src="job.company_logo" :alt="job.company_logo + '\'s logo' ">
+        <span v-else>No image</span>
+        <div>
+          <h2>{{ job.company }}</h2>
+          <!--TODO: REFORMAT the url <p>{{ job.company_url }}</p> -->
+        </div>
+        <a :href="companyUrl" target="blank">
+          <span class="btn btn--gray round">Company site</span>
+        </a>
       </div>
-      <a :href="companyUrl" target="blank">
-        <span class="btn btn--gray round">Company site</span>
-      </a>
+      <div class="job--description round">
+        <div class="job--infos">
+          <p class="flex text--gray">
+            <span>{{ publishTime }}</span>
+            <span class="point">.</span>
+            <span>{{ job.type }}</span>
+          </p>
+          <h2 class="text--dark job__title">{{ job.title }}</h2>
+          <p class="text--violet location">{{ job.location }}</p>
+          <a :href="companyUrl" ><span class="btn btn--violet round">Apply now</span></a>
+        </div>
+        <div v-html="job.description"></div>
+      </div>
+      <div class="text--dark round job--description job__apply">
+        <h3>How to apply</h3>
+        <div v-html="job.how_to_apply"></div>
+      </div>
     </div>
-    <div class="job--description round">
-      <div class="job--infos">
-        <p class="flex text--gray-dark">
-          <span>{{ publishTime }}</span>
-          <span class="point">.</span>
-          <span>{{ job.type }}</span>
-        </p>
-        <h2 class="text--dark job__title">{{ job.title }}</h2>
-        <p class="text--violet location">{{ job.location }}</p>
+    <footer>
+      <div>
+        <div>
+          <h4>{{ job.title }}</h4>
+          <p class="text--gray">{{ job.company }}</p>
+        </div>
         <a :href="companyUrl" ><span class="btn btn--violet round">Apply now</span></a>
       </div>
-      <div v-html="job.description">
-      </div>
-    </div>
+    </footer>
   </div>
 </template>
 
@@ -39,6 +53,7 @@ export default {
     const job = Array.from(jobs.value).find(job => job.id === route.params.id)
     const publishTime = route.params.publishTime
 
+    console.log(job)
     const companyUrl = computed(() => {
       const urlSplitted = job.company_url ? job.company_url.split('/') : []
 
@@ -133,6 +148,35 @@ export default {
       right: 40px;
     }
   }
-}
 
+  &__apply {
+    margin: 2rem 0;
+    padding: 1em 4em 2em;
+    background: url('../assets/img/desktop/bg-pattern-detail-footer.svg');
+    // background-position: fixed;
+    overflow-y:auto;
+    max-height: 260px;
+    a { word-break: break-all;}
+    * { color: white !important;}
+  }
+}
+footer {
+  background: white;
+  padding: 2rem 0;
+  width: 100%;
+  > div {
+    width: min(85vw, 800px);
+    margin: 0 auto;
+    @include style.mix-flexBox(
+      $justify: space-between,
+      $align: center
+    );
+  }
+  a{ text-decoration: none;}
+
+  h4 {
+    padding: 1rem 0;
+    font-size: 1.3rem;
+  }
+}
 </style>

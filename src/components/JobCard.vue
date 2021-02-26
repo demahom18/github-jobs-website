@@ -70,9 +70,9 @@ export default {
     transition: .5s;
     cursor: pointer;
     transform: scale(.98);
-    box-shadow: 0 1px 1px  style.$var-violet-light;;
+    box-shadow: 0 0 10px  rgba($color: style.$var-violet, $alpha: 0.1);
     &:hover {
-      box-shadow: 0 2px 5px  style.$var-violet;
+      box-shadow: 0 0px 15px  rgba($color: style.$var-violet, $alpha: .5);
       transform: scale(1);
     }
 

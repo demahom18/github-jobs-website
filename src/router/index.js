@@ -11,13 +11,25 @@ const routes = [
     path: '/jobdetails/:id',
     name: 'JobDetail',
     component: () => import(/* webpackChunkName: "job" */ '../views/JobDetail.vue'),
-    props: true
+    props: {
+      id: true,
+      publishTime: true
+    }
   }
 ]
 
+const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition
+  } else {
+    return { left: 0, top: 0 }
+  }
+}
+
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior
 })
 
 export default router
