@@ -1,9 +1,9 @@
 <template>
   <div
-    class="job-card job"
-    @click="gotoJobDetail(job.id)"
+    class="job-card job round"
+    @click="gotoJobDetail(job.id, publishTime)"
   >
-    <span class="logo">
+    <span class="logo round">
       <img
         v-if="job.company_logo"
         :src="job.company_logo"
@@ -12,7 +12,7 @@
       <span v-else>No Image</span>
     </span>
     <p class="flex text--gray-dark">
-      <span>{{ publishedSince }}</span>
+      <span>{{ publishTime }}</span>
       <span class="point">.</span>
       <span>{{ job.type }}</span>
     </p>
@@ -38,7 +38,7 @@ export default {
     const duration = Duration.fromMillis(Date.now() - publishedDate)
       .toFormat('d h m s').split(' ')
 
-    const publishedSince = computed(() => {
+    const publishTime = computed(() => {
       // Format the time to minute precision
       if (duration[0] !== '0') return `${duration[0]}d ago`
       else if (duration[1] !== '0') return `${duration[1]}h ago`
@@ -46,12 +46,11 @@ export default {
     })
 
     const router = useRouter()
-
-    const gotoJobDetail = id => {
-      router.push({ name: 'JobDetail', params: { id } })
+    const gotoJobDetail = (id, publishTime) => {
+      router.push({ name: 'JobDetail', params: { id, publishTime } })
     }
     return {
-      publishedSince,
+      publishTime,
       gotoJobDetail
     }
   }
@@ -66,7 +65,6 @@ export default {
     width: min(350px, 90vw);
     height: 250px;
     background: white;
-    border-radius: 6px;
     padding: 2rem;
     position: relative;
     transition: .5s;
@@ -88,7 +86,6 @@ export default {
       width: 50px;
       min-height: 50px;
       box-shadow: 0 0 10px style.$var-gray;
-      border-radius: 5px;
       background: white;
       display: grid;
       place-content: center;

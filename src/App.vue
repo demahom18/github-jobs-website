@@ -9,7 +9,7 @@ export default {
   components: { Header },
   setup () {
     const jobs = ref()
-    fetch('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json')
+    fetch('https://cors.bridged.cc/https://jobs.github.com/positions.json')
       .then((res) => res.json())
       .then((data) => {
         jobs.value = data

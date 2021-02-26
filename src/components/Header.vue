@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>devjobs</h1>
+    <h1 @click="$router.push('/')">devjobs</h1>
     <div class="switcher">
       <span>
         <!--eslint-disable-next-line -->
@@ -47,7 +47,7 @@ header {
     $align: center
   );
 
-  h1 { color: white}
+  h1 { color: white; cursor: pointer}
 }
 
 /**Switcher */

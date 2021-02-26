@@ -22,6 +22,10 @@ img {
   display: block;
 }
 
+li::marker {
+  color: v.$violet;
+}
+
 // @media (prefers-color-scheme: dark) {
 //   body  { background:  #333; color: white; }
 // }
