@@ -77,7 +77,6 @@ header {
   right: 0;
   background: #dfdfdf;
   transition: .5s;
-  // box-shadow: 0px 0px 4px style.$var-violet-light;
 }
 .slider:before {
   position: absolute;

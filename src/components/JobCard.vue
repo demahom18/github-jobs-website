@@ -1,5 +1,8 @@
 <template>
-  <div class="job-card job">
+  <div
+    class="job-card job"
+    @click="gotoJobDetail(job.id)"
+  >
     <span class="logo">
       <img
         v-if="job.company_logo"
@@ -22,6 +25,7 @@
 <script>
 import { Duration } from 'luxon'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 export default {
   props: {
     job: {
@@ -31,18 +35,25 @@ export default {
   },
   setup (props) {
     const publishedDate = Date.parse(props.job.created_at)
-    const dateNow = Date.now()
-    const duration = Duration.fromMillis(dateNow - publishedDate).toFormat('d h m s')
-    const arr = duration.split(' ')
+    const duration = Duration.fromMillis(Date.now() - publishedDate)
+      .toFormat('d h m s').split(' ')
 
     const publishedSince = computed(() => {
       // Format the time to minute precision
-      if (arr[0] !== '0') return `${arr[0]}d ago`
-      else if (arr[1] !== '0') return `${arr[1]}h ago`
-      else return `${arr[2]}m ago`
+      if (duration[0] !== '0') return `${duration[0]}d ago`
+      else if (duration[1] !== '0') return `${duration[1]}h ago`
+      else return `${duration[2]}m ago`
     })
 
-    return { publishedSince }
+    const router = useRouter()
+
+    const gotoJobDetail = id => {
+      router.push({ name: 'JobDetail', params: { id } })
+    }
+    return {
+      publishedSince,
+      gotoJobDetail
+    }
   }
 }
 </script>
@@ -58,11 +69,13 @@ export default {
     border-radius: 6px;
     padding: 2rem;
     position: relative;
-    transition: .3s;
+    transition: .5s;
     cursor: pointer;
-    box-shadow: 0 0 10px style.$var-gray;
+    transform: scale(.98);
+    box-shadow: 0 1px 1px  style.$var-violet-light;;
     &:hover {
-      box-shadow: 0 0 20px style.$var-gray-dark;
+      box-shadow: 0 2px 5px  style.$var-violet;
+      transform: scale(1);
     }
 
     @include style.mix-flexBox(
@@ -85,7 +98,7 @@ export default {
       img { width: 100% }
     }
   }
-  .job__title {
+  &__title {
     @include style.mix-setFont(
       $size: 1.2rem,
       $weight: bold,
