@@ -1,9 +1,12 @@
 <template>
+  <Header/>
   <router-view/>
 </template>
 <script>
 import { onMounted, ref, provide } from 'vue'
+import Header from './components/Header.vue'
 export default {
+  components: { Header },
   setup () {
     const jobs = ref()
     onMounted(() => {

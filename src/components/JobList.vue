@@ -25,7 +25,7 @@ export default {
 <style lang="scss">
 @use '../assets/scss/styles.scss' as style;
 .job-list {
-  margin: 50px;
+  margin: 50px auto;
   @include style.mix-flexBox(
     $gap: 60px 30px,
     $wrap: wrap,

@@ -2,9 +2,11 @@
   <div class="job-card job">
     <span class="logo">
       <img
+        v-if="job.company_logo"
         :src="job.company_logo"
         :alt="`logo of ${job.company}`"
       >
+      <span v-else>No Image</span>
     </span>
     <p class="flex text--gray-dark">
       <span>{{ publishedSince }}</span>
@@ -34,15 +36,11 @@ export default {
     const arr = duration.split(' ')
 
     const publishedSince = computed(() => {
-      if (arr[0] !== '0') {
-        return `${arr[0]}d ago`
-      } else if (arr[1] !== '0') {
-        return `${arr[1]}h ago`
-      } else if (arr[2] !== '0') {
-        return `${arr[2]}m ago`
-      } else return `${arr[3]}s ago`
+      // Format the time to minute precision
+      if (arr[0] !== '0') return `${arr[0]}d ago`
+      else if (arr[1] !== '0') return `${arr[1]}h ago`
+      else return `${arr[2]}m ago`
     })
-    console.log(publishedSince.value)
 
     return { publishedSince }
   }
@@ -62,8 +60,9 @@ export default {
     position: relative;
     transition: .3s;
     cursor: pointer;
+    box-shadow: 0 0 10px style.$var-gray;
     &:hover {
-      box-shadow: 0 0 10px style.$var-gray;
+      box-shadow: 0 0 20px style.$var-gray-dark;
     }
 
     @include style.mix-flexBox(
@@ -73,11 +72,17 @@ export default {
     );
 
     .logo {
-      width: 15%;
+      width: 50px;
+      min-height: 50px;
+      box-shadow: 0 0 10px style.$var-gray;
+      border-radius: 5px;
+      background: white;
+      display: grid;
+      place-content: center;
       position: absolute;
       top: 0;
       transform: translate(0, -50%);
-      img { border-radius: 5px; width: 100% }
+      img { width: 100% }
     }
   }
   .job__title {
