@@ -118,7 +118,7 @@ export default {
       position: absolute;
       right: 2.5rem ;
       top:50%;
-      transform: translateY(-50%)
+      transform: translateY(-50%);
     }
 
     h2 {
@@ -145,7 +145,7 @@ export default {
     .btn {
       position: absolute;
       top:40px;
-      right: 40px;
+      right: 0px;
     }
   }
 
@@ -176,7 +176,41 @@ footer {
 
   h4 {
     padding: 1rem 0;
+    line-height: 1.5;
     font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .job--company div h2, footer > div div{
+    max-width: 60%;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .job--company {
+    transform:translateY(-20%);
+    flex-direction: column;
+    justify-content: center;
+    height: 230px;
+    .btn {
+      top:100%;
+      right: auto;
+      transform: translate(-50%, calc(-100% - 20px))
+    }
+    div h2 {
+      max-width: 100%;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    img{
+      transform: translateY(-30%);
+      max-width: min(25vw, 100px);
+      position: absolute;
+      top: 0;
+      box-shadow: 0 0 5px rgba($color: style.$var-violet-light, $alpha: 0.3);
+    }
   }
 }
 </style>
