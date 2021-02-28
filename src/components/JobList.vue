@@ -36,5 +36,7 @@ export default {
     $basis:350px
   )
 }
-
+@media only screen and (max-width: 850px) and (min-width: 700px) {
+ .job-list > * { flex-basis: 330px;}
+}
 </style>

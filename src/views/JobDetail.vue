@@ -37,7 +37,6 @@ export default {
     const job = Array.from(jobs.value).find(job => job.id === route.params.id)
     const publishTime = route.params.publishTime
 
-    console.log(job)
     const companyUrl = computed(() => {
       const urlSplitted = job.company_url ? job.company_url.split('/') : []
 
