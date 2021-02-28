@@ -11,7 +11,6 @@
   background: url('../assets/img/desktop/bg-pattern-detail-footer.svg');
   overflow-y:auto;
   max-height: 260px;
-  a { word-break: break-all;}
   * { color: white !important;}
   li::marker { color: white;}
 }

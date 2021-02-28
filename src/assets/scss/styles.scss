@@ -22,11 +22,10 @@ img {
   display: block;
 }
 
-li::marker {
-  color: v.$violet;
-}
+li::marker { color: v.$violet;}
 
 a {
+  word-break: break-all;
   color: v.$violet;
 }
 
