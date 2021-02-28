@@ -3,32 +3,16 @@
   <router-view/>
 </template>
 <script>
-import { ref, provide } from 'vue'
+import { provide } from 'vue'
 import Header from './components/Header.vue'
+import getJobs from './composables/getJobs'
 export default {
   components: { Header },
   setup () {
-    const jobs = ref()
-    const onLoading = ref()
+    const { jobs, loadData, error, onLoading } = getJobs()
+    loadData()
 
-    const fetchData = () => {
-      onLoading.value = true
-      fetch('https://cors.bridged.cc/https://jobs.github.com/positions.json')
-        .then((res) => res.json())
-        .then((data) => {
-          jobs.value = data
-          onLoading.value = false
-        })
-        .catch(err => console.warn('Can\'t fetch data', err))
-    }
-    fetchData()
-
-    provide('jobs', jobs)
-    provide('onLoading', onLoading)
-    return { jobs }
+    provide('jobsData', { jobs, error, onLoading })
   }
 }
 </script>
-<style lang="scss">
-
-</style>

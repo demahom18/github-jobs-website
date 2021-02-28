@@ -32,7 +32,7 @@ export default {
   components: { JobCompany, JobDescription, JobApply },
   name: 'JobDetail',
   setup () {
-    const jobs = inject('jobs')
+    const { jobs } = inject('jobsData')
     const route = useRoute()
     const job = Array.from(jobs.value).find(job => job.id === route.params.id)
     const publishTime = route.params.publishTime
