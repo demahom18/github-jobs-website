@@ -1,34 +1,14 @@
 <template>
   <div>
     <div class="job-page">
-      <div class="job--company round">
-        <img class="round" v-if="job.company_logo" :src="job.company_logo" :alt="job.company_logo + '\'s logo' ">
-        <span v-else>No image</span>
-        <div>
-          <h2>{{ job.company }}</h2>
-          <!--TODO: REFORMAT the url <p>{{ job.company_url }}</p> -->
-        </div>
-        <a :href="companyUrl" target="blank">
-          <span class="btn btn--gray round">Company site</span>
-        </a>
-      </div>
-      <div class="job--description round">
-        <div class="job--infos">
-          <p class="flex text--gray">
-            <span>{{ publishTime }}</span>
-            <span class="point">.</span>
-            <span>{{ job.type }}</span>
-          </p>
-          <h2 class="text--dark job__title">{{ job.title }}</h2>
-          <p class="text--violet location">{{ job.location }}</p>
-          <a :href="companyUrl" ><span class="btn btn--violet round">Apply now</span></a>
-        </div>
-        <div v-html="job.description"></div>
-      </div>
-      <div class="text--dark round job--description job__apply">
-        <h3>How to apply</h3>
-        <div v-html="job.how_to_apply"></div>
-      </div>
+      <JobCompany :job="job" :companyUrl="companyUrl"/>
+      <JobDescription :job="job" :companyUrl="companyUrl" :publishTime="publishTime" />
+      <JobApply>
+        <template v-slot>
+          <h3>How to apply</h3>
+          <div v-html="job.how_to_apply"></div>
+        </template>
+      </JobApply>
     </div>
     <footer>
       <div>
@@ -45,7 +25,11 @@
 <script>
 import { computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
+import JobCompany from '../components/JobCompany.vue'
+import JobDescription from '../components/JobDescription.vue'
+import JobApply from '../components/JobApply.vue'
 export default {
+  components: { JobCompany, JobDescription, JobApply },
   name: 'JobDetail',
   setup () {
     const jobs = inject('jobs')
@@ -81,85 +65,7 @@ export default {
 
   a {font-weight: 700;}
 }
-.job {
-  &--description {
-    background: white;
-    padding: 4rem;
-    color: style.$var-gray-dark;
 
-    p, li { line-height: 1.8rem}
-    ul, li {padding-left: 1em }
-
-    strong,h1, h2, h3, h4{
-      margin: 2rem 0;
-      color: black;
-      font-size: 1.3rem;
-    }
-    .job__title {
-      line-height: 1.5 !important;
-      margin: 0;
-      max-width: 65%;
-    }
-  }
-
-  &--company {
-    @include style.mix-flexBox(
-      $align: center
-    );
-    transform:translateY(-40%);
-    width:100%;
-    background: white;
-    height: 140px;
-    position: relative;
-
-    img { max-width: 140px; max-height:100% }
-
-    .btn {
-      position: absolute;
-      right: 2.5rem ;
-      top:50%;
-      transform: translateY(-50%);
-    }
-
-    h2 {
-      padding-left: 1rem;
-      max-width: 80%;
-      line-height: 1.5;
-    }
-  }
-
-  &--infos {
-    margin-bottom: 3rem;
-    position: relative;
-    p span { padding: 0 5px;}
-    .point {
-      font-size: 2rem;
-      transform: translate(0, -5px);
-    }
-    .location {font-weight: 700;}
-
-    > *:not(.btn) {
-      padding: 5px 0;
-    }
-
-    .btn {
-      position: absolute;
-      top:40px;
-      right: 0px;
-    }
-  }
-
-  &__apply {
-    margin: 2rem 0;
-    padding: 1em 4em 2em;
-    background: url('../assets/img/desktop/bg-pattern-detail-footer.svg');
-    // background-position: fixed;
-    overflow-y:auto;
-    max-height: 260px;
-    a { word-break: break-all;}
-    * { color: white !important;}
-  }
-}
 footer {
   background: white;
   padding: 2rem 0;
@@ -181,36 +87,24 @@ footer {
   }
 }
 
-@media only screen and (max-width: 850px) {
-  .job--company div h2, footer > div div{
+@media only screen and (max-width: 620px) {
+  footer > div div{
     max-width: 60%;
   }
 }
-
-@media only screen and (max-width: 620px) {
-  .job--company {
-    transform:translateY(-20%);
+@media only screen and (max-width: 450px) {
+  footer > div {
     flex-direction: column;
-    justify-content: center;
-    height: 230px;
+    gap: 1.5rem;
+    align-items: unset;
+
     .btn {
-      top:100%;
-      right: auto;
-      transform: translate(-50%, calc(-100% - 20px))
-    }
-    div h2 {
-      max-width: 100%;
+      display: inline-block;
+      width: 100%;
       text-align: center;
-      margin: 20px 0;
     }
 
-    img{
-      transform: translateY(-30%);
-      max-width: min(25vw, 100px);
-      position: absolute;
-      top: 0;
-      box-shadow: 0 0 5px rgba($color: style.$var-violet-light, $alpha: 0.3);
-    }
+    div{ max-width: 100%;}
   }
 }
 </style>
