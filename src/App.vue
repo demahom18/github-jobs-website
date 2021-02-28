@@ -9,13 +9,22 @@ export default {
   components: { Header },
   setup () {
     const jobs = ref()
-    fetch('https://cors.bridged.cc/https://jobs.github.com/positions.json')
-      .then((res) => res.json())
-      .then((data) => {
-        jobs.value = data
-      })
+    const onLoading = ref()
+
+    const fetchData = () => {
+      onLoading.value = true
+      fetch('https://cors.bridged.cc/https://jobs.github.com/positions.json')
+        .then((res) => res.json())
+        .then((data) => {
+          jobs.value = data
+          onLoading.value = false
+        })
+        .catch(err => console.warn('Can\'t fetch data', err))
+    }
+    fetchData()
 
     provide('jobs', jobs)
+    provide('onLoading', onLoading)
     return { jobs }
   }
 }
