@@ -9,6 +9,10 @@
 }
 .btn {
   padding: 1em 1.8em; color: white;
+  outline: none;
+  border: none;
+  font: inherit;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: .3s all ease;

@@ -8,7 +8,7 @@
       </p>
       <h2 class="text--dark job__title">{{ job.title }}</h2>
       <p class="text--violet location">{{ job.location }}</p>
-      <a :href="companyUrl" ><span class="btn btn--violet round">Apply now</span></a>
+      <a :href="companyUrl" ><button class="btn btn--violet round">Apply now</button></a>
     </div>
     <div v-html="job.description"></div>
   </div>

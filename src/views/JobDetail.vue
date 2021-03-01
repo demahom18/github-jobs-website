@@ -16,7 +16,7 @@
           <h4>{{ job.title }}</h4>
           <p class="text--gray">{{ job.company }}</p>
         </div>
-        <a :href="companyUrl" ><span class="btn btn--violet round">Apply now</span></a>
+        <a :href="companyUrl" ><button class="btn btn--violet round">Apply now</button></a>
       </div>
     </footer>
   </div>

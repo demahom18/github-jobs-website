@@ -7,7 +7,7 @@
       <!--TODO: REFORMAT the url <p>{{ job.company_url }}</p> -->
     </div>
     <a :href="companyUrl" target="blank">
-      <span class="btn btn--gray round">Company site</span>
+      <button class="btn btn--gray round">Company site</button>
     </a>
   </div>
 </template>
