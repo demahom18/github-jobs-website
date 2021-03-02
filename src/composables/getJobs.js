@@ -1,18 +1,16 @@
 import { ref } from 'vue'
-
 /**
   * Fetch data from github api
   *
 */
-const getJobs = () => {
+const getJobs = (url) => {
   const jobs = ref(null)
   const onLoading = ref()
   const error = ref(null)
-
+  const baseUrl = 'https://cors.bridged.cc/https://jobs.github.com/positions.json'
   const loadData = () => {
     onLoading.value = true
-    fetch(
-      'https://cors.bridged.cc/https://jobs.github.com/positions.json')
+    fetch(baseUrl)
       .then((res) => res.json())
       .then((data) => {
         jobs.value = data
