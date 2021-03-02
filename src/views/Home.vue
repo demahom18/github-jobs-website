@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <FilterRegion />
+    <FilterRegion @filter="handleFilter" />
     <JobList/>
   </div>
 </template>
@@ -14,6 +14,13 @@ export default {
   components: {
     JobList,
     FilterRegion
+  },
+  setup () {
+    const handleFilter = res => {
+      console.log(res)
+    }
+
+    return { handleFilter }
   }
 }
 </script>

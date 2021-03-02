@@ -37,20 +37,22 @@
 import { reactive } from 'vue'
 import filterJobs from '../composables/filterJobs'
 export default {
-  setup () {
+  setup (props, { emit }) {
     const form = reactive({
       searchText: '',
       searchLocation: '',
       fulltimeChecked: false
     })
 
-    const handleSubmit = (form) => {
-      const { textResult, locationResult, fulltimeResult } = filterJobs(
-        form.searchText,
-        form.searchLocation,
-        form.fulltimeChecked
-      )
-      console.log('text:', textResult, 'location: ', locationResult, 'fulltime: ', fulltimeResult)
+    const handleSubmit = async (form) => {
+      const text = form.searchText.replace(' ', '+')
+      const loc = form.searchLocation.replace(' ', '+')
+      const ft = form.fulltimeChecked === true ? 'on' : ''
+
+      const results = await filterJobs(text, loc, ft)
+
+      console.log(results)
+      emit('filter', results)
     }
 
     return {
