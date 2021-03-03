@@ -1,7 +1,7 @@
 <template>
   <div
     class="job-card job round"
-    @click="gotoJobDetail(job.id, publishTime)"
+    @click="gotoJobDetail(job.id, publishTime, companyUrl)"
   >
     <span class="logo round">
       <img
@@ -45,11 +45,21 @@ export default {
       else return `${duration[2]}m ago`
     })
 
+    const companyUrl = computed(() => {
+      const urlSplitted = props.job.company_url ? props.job.company_url.split('/') : []
+
+      //  An url always start by https://... So length must be > 2
+      //  A RegExp would've been better
+      if (urlSplitted.length < 2) return props.job.url
+      else return props.job.company_url
+    })
+
     const router = useRouter()
-    const gotoJobDetail = (id, publishTime) => {
-      router.push({ name: 'JobDetail', params: { id, publishTime } })
+    const gotoJobDetail = (id, publishTime, companyUrl) => {
+      router.push({ name: 'JobDetail', params: { id, publishTime, companyUrl } })
     }
     return {
+      companyUrl,
       publishTime,
       gotoJobDetail
     }

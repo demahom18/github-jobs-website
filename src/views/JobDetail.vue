@@ -1,8 +1,18 @@
 <template>
-  <div>
+  <div v-if="error" class="error">
+    <h3>{{ error }}</h3>
+  </div>
+  <div v-else-if="job">
     <div class="job-page">
-      <JobCompany :job="job" :companyUrl="companyUrl"/>
-      <JobDescription :job="job" :companyUrl="companyUrl" :publishTime="publishTime" />
+      <JobCompany
+        :job="job"
+        :companyUrl="companyUrl"
+      />
+      <JobDescription
+        :job="job"
+        :publishTime="publishTime"
+        :companyUrl="companyUrl"
+      />
       <JobApply>
         <template v-slot>
           <h3>How to apply</h3>
@@ -20,34 +30,31 @@
       </div>
     </footer>
   </div>
+  <div v-else class="loading">
+    <Loading/>
+  </div>
 </template>
 
 <script>
-import { computed, inject } from 'vue'
 import { useRoute } from 'vue-router'
 import JobCompany from '../components/JobCompany.vue'
 import JobDescription from '../components/JobDescription.vue'
 import JobApply from '../components/JobApply.vue'
+import findById from '../composables/findById'
+import Loading from '../components/Loading.vue'
 export default {
-  components: { JobCompany, JobDescription, JobApply },
+  components: { JobCompany, JobDescription, JobApply, Loading },
   name: 'JobDetail',
   setup () {
-    const { jobs } = inject('jobsData')
     const route = useRoute()
-    const job = Array.from(jobs.value).find(job => job.id === route.params.id)
-    const publishTime = route.params.publishTime
-
-    const companyUrl = computed(() => {
-      const urlSplitted = job.company_url ? job.company_url.split('/') : []
-
-      //  An url always start by https://... So length must be > 2
-      //  A RegExp would've been better
-      if (urlSplitted.length < 2) return job.url
-      else return job.company_url
-    })
+    const { job, error, onLoading } = findById(route.params.id.toString())
+    const publishTime = route.params.publishTime.toString()
+    const companyUrl = route.params.companyUrl.toString()
 
     return {
       job,
+      error,
+      onLoading,
       companyUrl,
       publishTime
     }

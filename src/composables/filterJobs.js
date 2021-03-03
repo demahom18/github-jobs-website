@@ -40,7 +40,7 @@ const fetchJobs = (url) => {
  * @param {String} ft text to search by fulltime
  * @returns {Object} results of filtering
  */
-const filterJobs = (text, loc, ft) => {
+const filterJobs = (text = '', loc = '', ft = '') => {
   const url = baseUrl + `?description=${text}&location=${loc}&full_time=${ft}`
   fetchJobs(url)
   return { jobs, onLoading, error }

@@ -22,7 +22,7 @@ export default {
     FilterRegion
   },
   setup () {
-    const { jobs, onLoading, error } = filterJobs('', '', '')
+    const { jobs, onLoading, error } = filterJobs()
 
     const jobsToShow = computed({
       get: () => jobs.value,

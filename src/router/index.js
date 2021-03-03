@@ -1,6 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
+function jobDetailProps (route) {
+  return {
+    id: route.params.id,
+    publishTime: route.params.publishTime,
+    companyUrl: route.params.companyUrl
+  }
+}
+
 const routes = [
   {
     path: '/',
@@ -11,10 +19,7 @@ const routes = [
     path: '/jobdetails/:id',
     name: 'JobDetail',
     component: () => import(/* webpackChunkName: "job" */ '../views/JobDetail.vue'),
-    props: {
-      id: true,
-      publishTime: true
-    }
+    props: jobDetailProps
   }
 ]
 

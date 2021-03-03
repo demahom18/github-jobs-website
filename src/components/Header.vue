@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1 @click="$router.push('/')">devjobs</h1>
+    <h1 @click="$router.push({ name: 'Home' })">devjobs</h1>
     <div class="switcher">
       <span>
         <!--eslint-disable-next-line -->
