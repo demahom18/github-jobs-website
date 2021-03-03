@@ -1,5 +1,8 @@
 <template>
-  <div class="job-list" v-if="jobs">
+  <div v-if="jobs && jobs.length === 0" class="error">
+    <h3>No Jobs found !</h3>
+  </div>
+  <div class="job-list" v-if="jobs && jobs.length > 0">
      <JobCard
       v-for="job in jobs"
       :key="job.id"
@@ -16,16 +19,24 @@
 </template>
 
 <script>
-import { inject } from 'vue'
 import JobCard from './JobCard.vue'
 import Loading from './Loading.vue'
 export default {
   components: { JobCard, Loading },
-  setup () {
-    const { jobs, error, onLoading } = inject('jobsData')
-    return { jobs, error, onLoading }
+  props: {
+    jobs: {
+      required: true,
+      default: null
+    },
+    error: {
+      type: String,
+      default: null
+    },
+    onLoading: {
+      type: Boolean,
+      default: false
+    }
   }
-
 }
 </script>
 

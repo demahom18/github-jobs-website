@@ -35,7 +35,6 @@
 
 <script>
 import { reactive } from 'vue'
-import filterJobs from '../composables/filterJobs'
 export default {
   setup (props, { emit }) {
     const form = reactive({
@@ -45,14 +44,11 @@ export default {
     })
 
     const handleSubmit = async (form) => {
-      const text = form.searchText.replace(' ', '+')
-      const loc = form.searchLocation.replace(' ', '+')
+      /** Remove all white spaces and replace by + */
+      const text = form.searchText.trim().replace(' ', '+')
+      const loc = form.searchLocation.trim().replace(' ', '+')
       const ft = form.fulltimeChecked === true ? 'on' : ''
-
-      const results = await filterJobs(text, loc, ft)
-
-      console.log(results)
-      emit('filter', results)
+      emit('filter', { text, loc, ft })
     }
 
     return {

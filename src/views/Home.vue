@@ -1,13 +1,19 @@
 <template>
   <div class="home">
     <FilterRegion @filter="handleFilter" />
-    <JobList/>
+    <JobList
+      :jobs="jobs"
+      :error="error"
+      :onLoading="onLoading"
+    />
   </div>
 </template>
 
 <script>
+import filterJobs from '../composables/filterJobs'
 import FilterRegion from '../components/FilterRegion.vue'
 import JobList from '../components/JobList.vue'
+import { computed } from 'vue'
 
 export default {
   name: 'Home',
@@ -16,11 +22,25 @@ export default {
     FilterRegion
   },
   setup () {
-    const handleFilter = res => {
-      console.log(res)
+    const { jobs, onLoading, error } = filterJobs('', '', '')
+
+    const jobsToShow = computed({
+      get: () => jobs.value,
+      set: newVal => newVal
+    })
+
+    const handleFilter = (res) => {
+      const { jobs } = filterJobs(res.text, res.loc, res.ft)
+      jobsToShow.value = jobs
+      return { jobsToShow }
     }
 
-    return { handleFilter }
+    return {
+      jobs: jobsToShow,
+      error,
+      onLoading,
+      handleFilter
+    }
   }
 }
 </script>
