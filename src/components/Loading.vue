@@ -50,7 +50,7 @@ export default {
         width: 15px;
         height:15px;
         border-radius: 50%;
-        background: style.$var-violet;
+        background: style.$var-gray-light;
         animation: rotate linear infinite 1.2s;
         animation-delay: calc(.1s * var(--i));
         box-shadow:
@@ -74,5 +74,14 @@ export default {
     transform: scale(.1);
   }
 }
-
+body.dark .loader-rotate span:before {
+  box-shadow:
+          0 0 10px style.$var-violet,
+          0 0 20px style.$var-violet,
+          0 0 40px style.$var-violet,
+          0 0 60px style.$var-violet,
+          0 0 80px style.$var-violet,
+          0 0 100px style.$var-violet,
+          0 0 120px style.$var-violet;
+}
 </style>

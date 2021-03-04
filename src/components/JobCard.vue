@@ -77,7 +77,7 @@ export default {
     background: white;
     padding: 2rem;
     position: relative;
-    transition: .5s;
+    transition: .3s;
     cursor: pointer;
     transform: scale(.98);
     box-shadow: 0 0 10px  rgba($color: style.$var-violet, $alpha: 0.1);
@@ -131,9 +131,9 @@ export default {
 body.dark {
   .job-card {
     background: style.$var-dark;
-    box-shadow: 0 0 10px style.$var-gray-dark;
+    box-shadow: 1px 1px 0px style.$var-violet-light;
     &:hover {
-      box-shadow: 0 0 10px style.$var-gray-light;
+      box-shadow: 10px 15px 0 style.$var-violet;
     }
     .logo { box-shadow: 0 0 10px style.$var-midnight; }
   }

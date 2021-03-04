@@ -124,6 +124,10 @@ export default {
 body.dark {
   .filter {
     background: style.$var-dark;
+    box-shadow: 1px 1px 0px style.$var-violet-light;
+    &:hover {
+      box-shadow: 3px 3px 0 style.$var-violet;
+    }
     *:not(.btn) {
       background: style.$var-dark;
       border-color: rgba($color: style.$var-gray-light, $alpha: 0.2);

@@ -85,9 +85,11 @@ export default {
   }
 }
 
-body.dark {
-  .job--company { background: style.$var-dark }
-  .job--company .btn {
+body.dark .job--company {
+  background: style.$var-dark;
+  box-shadow: 1px 1px 0px style.$var-violet-light;
+
+  .btn {
     background: rgba($color: style.$var-gray-dark, $alpha: 0.3);
     &:hover { background: style.$var-gray-dark; }
     color: white;

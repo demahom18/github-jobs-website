@@ -95,12 +95,11 @@ export default {
   }
 }
 
-body.dark {
-  .job-description {
-    background: style.$var-dark;
-    color: style.$var-gray;
+body.dark .job-description {
+  background: style.$var-dark;
+  color: style.$var-gray;
+  box-shadow: 1px 1px 0px style.$var-violet-light;
 
-    strong,h1, h2, h3, h4 { color: style.$var-gray-light; }
-  }
+  strong,h1, h2, h3, h4 { color: style.$var-gray-light; }
 }
 </style>
