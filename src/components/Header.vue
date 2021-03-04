@@ -34,11 +34,9 @@ export default {
     const currentTheme = ref(window.localStorage.getItem('theme-color'))
 
     if (!currentTheme.value) {
-      console.log('userTheme: ', userTheme)
       document.body.classList.add(userTheme)
       checked.value = userTheme === 'dark'
     } else {
-      console.log('currentTheme: ', currentTheme.value)
       document.body.classList.add(currentTheme.value)
       checked.value = currentTheme.value === 'dark'
     }
@@ -46,7 +44,7 @@ export default {
     const switchTheme = () => {
       //  Check if the value was true before the click
       if (checked.value === true) {
-        // Now it is false
+        // Now it is false - the ckeckbox is not checked
         window.localStorage.setItem('theme-color', 'light')
         currentTheme.value = localStorage.getItem('theme-color')
         document.body.classList.remove('dark')

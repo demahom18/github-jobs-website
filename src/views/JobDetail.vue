@@ -83,6 +83,7 @@ footer {
       $justify: space-between,
       $align: center
     );
+    div { max-width: 60%;}
   }
   a{ text-decoration: none;}
 
@@ -93,11 +94,6 @@ footer {
   }
 }
 
-@media only screen and (max-width: 620px) {
-  footer > div div{
-    max-width: 60%;
-  }
-}
 @media only screen and (max-width: 450px) {
   footer > div {
     flex-direction: column;
