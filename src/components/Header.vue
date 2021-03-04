@@ -10,7 +10,7 @@
         <input
           v-model="checked"
           type="checkbox"
-          @input="$emit('switched', checked)"
+          @input="switchTheme"
           :class="{ active: checked }"
         >
         <span class="slider round" />
@@ -25,12 +25,42 @@
 
 <script>
 import { inject, ref } from 'vue'
+import getUserTheme from '../composables/getUserTheme'
 export default {
   emits: ['switched'],
   setup () {
-    const checked = ref(false)
     const currentTheme = inject('theme')
-    return { checked, currentTheme }
+    const checked = ref(false)
+    const { userTheme } = getUserTheme()
+    if (!currentTheme.value) {
+      console.log('userTheme: ', userTheme)
+      document.body.classList.add(userTheme)
+      checked.value = userTheme === 'dark'
+    } else {
+      console.log('currentTheme: ', currentTheme.value)
+      document.body.classList.add(currentTheme.value)
+      checked.value = currentTheme.value === 'dark'
+    }
+
+    const switchTheme = () => {
+      console.log(checked.value)
+      //  If the value was true before the click
+      if (checked.value === true) {
+        // Now it is false
+        window.localStorage.setItem('theme-color', 'light')
+        currentTheme.value = localStorage.getItem('theme-color')
+        document.body.classList.remove('dark')
+        document.body.classList.add(currentTheme.value)
+      } else {
+        // Now it is true
+        window.localStorage.setItem('theme-color', 'dark')
+        currentTheme.value = localStorage.getItem('theme-color')
+        document.body.classList.remove('light')
+        document.body.classList.add(currentTheme.value)
+      }
+    }
+
+    return { checked, switchTheme }
   }
 }
 </script>

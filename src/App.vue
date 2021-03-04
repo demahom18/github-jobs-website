@@ -1,5 +1,5 @@
 <template>
-  <Header @switched="switchTheme"/>
+  <Header />
   <div>
     <router-view/>
   </div>
@@ -8,26 +8,15 @@
 import { provide, ref } from 'vue'
 
 import Header from './components/Header.vue'
+// import getUserTheme from './composables/getUserTheme'
 export default {
   components: { Header },
   setup () {
-    const currentTheme = ref(localStorage.getItem('theme-color'))
+    const currentTheme = ref(window.localStorage.getItem('theme-color'))
 
-    const switchTheme = clicked => {
-      if (clicked === false) {
-        document.body.classList.remove('dark')
-        localStorage.setItem('theme-color', 'light')
-        currentTheme.value = localStorage.getItem('theme-color')
-      } else {
-        document.body.classList.add('dark')
-        localStorage.setItem('theme-color', 'dark')
-        currentTheme.value = localStorage.getItem('theme-color')
-      }
-    }
     provide('theme', currentTheme)
     return {
-      currentTheme,
-      switchTheme
+      currentTheme
     }
   }
 }
