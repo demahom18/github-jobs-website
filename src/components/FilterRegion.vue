@@ -80,6 +80,7 @@ export default {
   }
   input {
     outline: none;
+    font-family: inherit;
     border: none;
     padding: 0 1rem 0 3rem;
     height: 80px;
@@ -121,19 +122,18 @@ export default {
   //TODO: mobile version modal
 }
 
-body.dark {
-  .filter {
-    background: style.$var-dark;
-    box-shadow: 1px 1px 0px style.$var-violet-light;
-    &:hover {
-      box-shadow: 3px 3px 0 style.$var-violet;
-    }
-    *:not(.btn) {
-      background: style.$var-dark;
-      border-color: rgba($color: style.$var-gray-light, $alpha: 0.2);
-      border-radius: 6px;
-      color: style.$var-gray-light;
-    }
+body.dark .filter {
+  background: style.$var-dark;
+  box-shadow: 1px 1px 0px style.$var-violet-light;
+  &:hover {
+    box-shadow: 3px 3px 0 style.$var-violet;
   }
+  *:not(.btn) {
+    background: style.$var-dark;
+    border-color: rgba($color: style.$var-gray-light, $alpha: 0.2);
+    border-radius: 6px;
+    color: style.$var-gray-light;
+  }
+  ::placeholder { color: style.$var-gray;}
 }
 </style>

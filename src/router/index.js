@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import JobDetail from '../views/JobDetail.vue'
 
 function jobDetailProps (route) {
   return {
@@ -18,7 +19,7 @@ const routes = [
   {
     path: '/jobdetails/:id',
     name: 'JobDetail',
-    component: () => import(/* webpackChunkName: "job" */ '../views/JobDetail.vue'),
+    component: JobDetail,
     props: jobDetailProps
   }
 ]

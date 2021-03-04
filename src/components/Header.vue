@@ -42,7 +42,7 @@ export default {
     }
 
     const switchTheme = () => {
-      //  Check if the value was true before the click
+      //  Check if the value was true before the switch
       if (checked.value === true) {
         // Now it is false - the ckeckbox is not checked
         window.localStorage.setItem('theme-color', 'light')
