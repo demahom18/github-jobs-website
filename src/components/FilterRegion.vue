@@ -44,9 +44,13 @@ export default {
     })
 
     const handleSubmit = async (form) => {
+      const formFields = Object.values(form)
+      const isInvalid = formFields.every(field => !field)
+      if (isInvalid) return
+
       /** Remove all white spaces and replace by + */
-      const text = form.searchText.trim().replace(' ', '+')
-      const loc = form.searchLocation.trim().replace(' ', '+')
+      const text = form.searchText.trim().replaceAll(' ', '+')
+      const loc = form.searchLocation.trim().replaceAll(' ', '+')
       const ft = form.fulltimeChecked === true ? 'on' : ''
       emit('filter', { text, loc, ft })
     }
@@ -125,6 +129,7 @@ export default {
 body.dark .filter {
   background: style.$var-dark;
   box-shadow: 1px 1px 0px style.$var-violet-light;
+  transition: .3s;
   &:hover {
     box-shadow: 3px 3px 0 style.$var-violet;
   }

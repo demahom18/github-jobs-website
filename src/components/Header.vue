@@ -31,31 +31,18 @@ export default {
   setup () {
     const checked = ref(false)
     const { userTheme } = getUserTheme()
-    const currentTheme = ref(window.localStorage.getItem('theme-color'))
+    let currentTheme = window.localStorage.getItem('theme-color') || userTheme
 
-    if (!currentTheme.value) {
-      document.body.classList.add(userTheme)
-      checked.value = userTheme === 'dark'
-    } else {
-      document.body.classList.add(currentTheme.value)
-      checked.value = currentTheme.value === 'dark'
-    }
+    document.body.classList.add(currentTheme)
+    checked.value = currentTheme === 'dark'
 
     const switchTheme = () => {
-      //  Check if the value was true before the switch
-      if (checked.value === true) {
-        // Now it is false - the ckeckbox is not checked
-        window.localStorage.setItem('theme-color', 'light')
-        currentTheme.value = localStorage.getItem('theme-color')
-        document.body.classList.remove('dark')
-        document.body.classList.add(currentTheme.value)
-      } else {
-        // Now it is true
-        window.localStorage.setItem('theme-color', 'dark')
-        currentTheme.value = localStorage.getItem('theme-color')
-        document.body.classList.remove('light')
-        document.body.classList.add(currentTheme.value)
-      }
+      const newTheme = checked.value ? 'light' : 'dark'
+
+      document.body.classList.remove(currentTheme)
+      document.body.classList.add(newTheme)
+      window.localStorage.setItem('theme-color', newTheme)
+      currentTheme = window.localStorage.getItem('theme-color')
     }
 
     return { checked, switchTheme }
