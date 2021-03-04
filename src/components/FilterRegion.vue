@@ -43,9 +43,8 @@ export default {
       fulltimeChecked: false
     })
 
-    const handleSubmit = async (form) => {
-      const formFields = Object.values(form)
-      const isInvalid = formFields.every(field => !field)
+    const handleSubmit = (form) => {
+      const isInvalid = Object.values(form).every(field => !field)
       if (isInvalid) return
 
       /** Remove all white spaces and replace by + */
