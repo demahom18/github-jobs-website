@@ -24,14 +24,15 @@
 </template>
 
 <script>
-import { inject, ref } from 'vue'
+import { ref } from 'vue'
 import getUserTheme from '../composables/getUserTheme'
 export default {
   emits: ['switched'],
   setup () {
-    const currentTheme = inject('theme')
     const checked = ref(false)
     const { userTheme } = getUserTheme()
+    const currentTheme = ref(window.localStorage.getItem('theme-color'))
+
     if (!currentTheme.value) {
       console.log('userTheme: ', userTheme)
       document.body.classList.add(userTheme)
@@ -43,8 +44,7 @@ export default {
     }
 
     const switchTheme = () => {
-      console.log(checked.value)
-      //  If the value was true before the click
+      //  Check if the value was true before the click
       if (checked.value === true) {
         // Now it is false
         window.localStorage.setItem('theme-color', 'light')
