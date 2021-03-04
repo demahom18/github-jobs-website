@@ -113,4 +113,6 @@ footer {
     div{ max-width: 100%;}
   }
 }
+
+body.dark footer { background: style.$var-dark;}
 </style>

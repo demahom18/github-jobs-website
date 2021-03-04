@@ -10,7 +10,8 @@
         <input
           v-model="checked"
           type="checkbox"
-          @change="$emit('switched', checked)"
+          @input="$emit('switched', checked)"
+          :class="{ active: checked }"
         >
         <span class="slider round" />
       </label>
@@ -23,13 +24,13 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 export default {
   emits: ['switched'],
   setup () {
     const checked = ref(false)
-
-    return { checked }
+    const currentTheme = inject('theme')
+    return { checked, currentTheme }
   }
 }
 </script>

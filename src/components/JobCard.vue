@@ -128,4 +128,15 @@ export default {
   }
 }
 
+body.dark {
+  .job-card {
+    background: style.$var-dark;
+    box-shadow: 0 0 10px style.$var-gray-dark;
+    &:hover {
+      box-shadow: 0 0 10px style.$var-gray-light;
+    }
+    .logo { box-shadow: 0 0 10px style.$var-midnight; }
+  }
+}
+
 </style>

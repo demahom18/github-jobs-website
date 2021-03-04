@@ -94,4 +94,13 @@ export default {
     }
   }
 }
+
+body.dark {
+  .job-description {
+    background: style.$var-dark;
+    color: style.$var-gray;
+
+    strong,h1, h2, h3, h4 { color: style.$var-gray-light; }
+  }
+}
 </style>

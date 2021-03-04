@@ -85,8 +85,8 @@ export default {
     height: 80px;
     &[type="text"] {
       width: 100%;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
       border-right: 2px solid style.$var-gray-light;
     }
   }
@@ -119,5 +119,17 @@ export default {
 
 @media only screen and (max-width: 650px) {
   //TODO: mobile version modal
+}
+
+body.dark {
+  .filter {
+    background: style.$var-dark;
+    *:not(.btn) {
+      background: style.$var-dark;
+      border-color: rgba($color: style.$var-gray-light, $alpha: 0.2);
+      border-radius: 6px;
+      color: style.$var-gray-light;
+    }
+  }
 }
 </style>
