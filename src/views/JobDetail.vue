@@ -45,18 +45,18 @@ import Loading from '../components/Loading.vue'
 export default {
   components: { JobCompany, JobDescription, JobApply, Loading },
   name: 'JobDetail',
+  props: {
+    companyUrl: { type: String, required: true },
+    publishTime: { type: String, required: true }
+  },
   setup () {
     const route = useRoute()
     const { job, error, onLoading } = findById(route.params.id.toString())
-    const publishTime = route.params.publishTime.toString()
-    const companyUrl = route.params.companyUrl.toString()
 
     return {
       job,
       error,
-      onLoading,
-      companyUrl,
-      publishTime
+      onLoading
     }
   }
 }
