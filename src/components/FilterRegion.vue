@@ -10,50 +10,37 @@
           v-model="form.searchText"
           placeholder="Filter by title, company, expertise..."
         />
+        <svg class="icon-filter" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M19.108 0H.86a.86.86 0 00-.764.455.833.833 0 00.068.884l6.685 9.202.007.01c.242.32.374.708.375 1.107v7.502a.825.825 0 00.248.594.865.865 0 00.942.18l3.756-1.4c.337-.1.56-.41.56-.784v-6.092c0-.399.132-.787.375-1.108l.007-.009 6.685-9.202c.19-.26.217-.6.068-.884A.86.86 0 0019.108 0z" fill="#5964E0" fill-rule="nonzero"/></svg>
       </div>
-      <div class="filter-by-location">
-        <!-- eslint-disable-next-line vue/max-attributes-per-line -->
-        <svg width="17" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.358 2.451A8.3 8.3 0 008.448 0a8.3 8.3 0 00-5.911 2.451c-2.922 2.925-3.285 8.427-.786 11.76l6.697 9.683 6.687-9.669c2.508-3.347 2.145-8.85-.777-11.774zm-5.833 8.894a3.057 3.057 0 01-3.051-3.054 3.057 3.057 0 013.05-3.055 3.057 3.057 0 013.052 3.055 3.057 3.057 0 01-3.051 3.054z" fill="#5964E0" fill-rule="nonzero"/></svg>
-        <input
-          type="text"
-          v-model="form.searchLocation"
-          placeholder="Filter by location..."
-        />
-      </div>
-      <div class="filter-by-fulltime">
-        <input
-          type="checkbox"
-          v-model="form.fulltimeChecked"
-          id="checkbox"
-        />
-        <label for="checkbox">Full Time Only</label>
-      </div>
-      <div><button class="btn btn--violet round">Search</button></div>
-      <FilterModal v-if="modalOpen">
-        <template #location>
+      <div :class="{ modal: modalOpen, filter__right: !modalOpen }">
+        <div class="filter-by-location">
+          <!-- eslint-disable-next-line vue/max-attributes-per-line -->
+          <svg width="17" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.358 2.451A8.3 8.3 0 008.448 0a8.3 8.3 0 00-5.911 2.451c-2.922 2.925-3.285 8.427-.786 11.76l6.697 9.683 6.687-9.669c2.508-3.347 2.145-8.85-.777-11.774zm-5.833 8.894a3.057 3.057 0 01-3.051-3.054 3.057 3.057 0 013.05-3.055 3.057 3.057 0 013.052 3.055 3.057 3.057 0 01-3.051 3.054z" fill="#5964E0" fill-rule="nonzero"/></svg>
           <input
             type="text"
             v-model="form.searchLocation"
             placeholder="Filter by location..."
           />
-        </template>
-        <template #fulltime>
-          <input
-            type="checkbox"
-            v-model="form.fulltimeChecked"
-            id="checkbox"
-          />
-        </template>
-      </FilterModal>
+        </div>
+        <div class="filter-by-fulltime">
+          <div>
+            <input
+              type="checkbox"
+              v-model="form.fulltimeChecked"
+              id="checkbox"
+            />
+            <label for="checkbox">Full Time Only</label>
+          </div>
+          <div><button class="btn btn--violet round">Search</button></div>
+        </div>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
 import { reactive, ref } from 'vue'
-import FilterModal from './FilterModal.vue'
 export default {
-  components: { FilterModal },
   setup (props, { emit }) {
     const form = reactive({
       searchText: '',
@@ -92,57 +79,77 @@ export default {
   height: 80px;
   position: relative;
   margin: 0 auto;
-  form {
-    @include style.mix-flexBox(
-      $align:center,
-      $justify: space-between
-    );
+
+  form,
+  &-by-name {
+    @include style.mix-flexBox($justify: space-between, $align: center);
     height:100%;
-    position: absolute;
     width: 100%;
   }
-  input {
-    outline: none;
-    font-family: inherit;
+
+  input[type="text"] {
     border: none;
-    padding: 0 1rem 0 3rem;
-    height: 80px;
-    &[type="text"] {
-      width: 100%;
-      border-top-right-radius: 0 !important;
-      border-bottom-right-radius: 0 !important;
-      border-right: 2px solid style.$var-gray-light;
-    }
+    outline: none;
   }
-  div {
-    position: relative;
+
+  &-by-name input {
+    height: 100%;
+    width: calc(100% - 45px - 4rem);
   }
 
   svg {
-    position: absolute;
-    z-index: 5;
-    top:50%;
-    left:0;
-    transform: translate(1rem, -50%);
+    margin: 0 1rem;
+    path:hover { fill: style.$var-violet-light }
+    &.icon-filter { cursor: pointer;}
   }
 
-  &-by-name, &-by-location { flex-basis: min(23vw, 400px) !important}
-  &-by-fulltime {
-    @include style.mix-flexBox(
-      $align:center,
-      $justify: center,
-      $gap: 0.7rem
-    );
-    margin: 0rem;
-    + div { margin-right: 1rem;}
-  }
-}
-@media only screen and (max-width: 880px) {
-  .filter label { font-size: .8rem;}
+  &__right { display: none; }
 }
 
-@media only screen and (max-width: 650px) {
-  //TODO: mobile version modal
+@media only screen and (min-width: 720px) {
+  .filter {
+    .icon-filter { display: none;}
+    &__right { width: 67%; }
+
+    &__right,
+    &-by-fulltime,
+    &-by-location {
+      height: 100%;
+      @include style.mix-flexBox(
+        $justify: center,
+        $align: center
+      );
+
+      label { font-size: .8rem;}
+    }
+
+    &-by-fulltime {
+      width: 50%;
+      justify-content: space-between;
+      label, input { margin: 0 0 0 .5rem;}
+    }
+
+    .btn { margin: 0 1rem 0 }
+
+    input[type="text"] {
+      border-right: 2px solid style.$var-gray-light;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &-by-location {
+      width: 50%;
+      input {
+        height: 100%;
+        width: calc(100% - 2.5rem);
+      }
+    }
+
+    &-by-name {
+      width: 33%;
+      input { width: calc(100% - 24px - 2rem); }
+    }
+  }
 }
 
 body.dark .filter {
