@@ -2,16 +2,18 @@
   "name": "github-jobs",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Mohamed Donzo",
+    "email": "demahom18@outlook.com",
+    "github": "https://github.com/demahom18"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "-": "0.0.1",
-    "D": "^1.0.0",
     "core-js": "^3.6.5",
-    "luxon": "^1.26.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
@@ -29,6 +31,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0-0",
+    "luxon": "^1.26.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2"
   }
