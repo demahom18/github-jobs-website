@@ -45,14 +45,11 @@ export default {
       else return `${duration[2]}m ago`
     })
 
-    const companyUrl = computed(() => {
-      const urlSplitted = props.job.company_url ? props.job.company_url.split('/') : []
-
-      //  An url always start by https://... So length must be > 2
-      //  A RegExp would've been better
-      if (urlSplitted.length < 2) return props.job.url
-      else return props.job.company_url
-    })
+    //  Test if the company url is valid
+    /* eslint-disable-next-line */
+    const urlTest = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm
+    const test = urlTest.test(props.job.company_url)
+    const companyUrl = computed(() => test ? props.job.company_url : props.job.url)
 
     const router = useRouter()
     const gotoJobDetail = (id, publishTime, companyUrl) => {

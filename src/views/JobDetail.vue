@@ -46,10 +46,11 @@ export default {
   components: { JobCompany, JobDescription, JobApply, Loading },
   name: 'JobDetail',
   props: {
+    id: { type: String, required: true },
     companyUrl: { type: String, required: true },
     publishTime: { type: String, required: true }
   },
-  setup () {
+  setup (props) {
     const route = useRoute()
     const { job, error, onLoading } = findById(route.params.id.toString())
 
