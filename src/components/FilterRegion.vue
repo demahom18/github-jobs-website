@@ -109,7 +109,7 @@ export default {
 @media only screen and (min-width: 720px) {
   .filter {
     .icon-filter { display: none;}
-    &__right { width: 67%; }
+    &__right { width: 70%; }
 
     &__right,
     &-by-fulltime,
@@ -124,29 +124,29 @@ export default {
     }
 
     &-by-fulltime {
-      width: 50%;
+      width: 60%;
       justify-content: space-between;
       label, input { margin: 0 0 0 .5rem;}
     }
 
-    .btn { margin: 0 1rem 0 }
+    .btn { margin: 0 1rem 0 0 }
 
     input[type="text"] {
       border-right: 2px solid style.$var-gray-light;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
     }
 
     &-by-location {
-      width: 50%;
+      width: 40%;
       input {
         height: 100%;
-        width: calc(100% - 2.5rem);
+        width: calc(100% - 2rem);
       }
     }
 
     &-by-name {
-      width: 33%;
+      width: 30%;
       input { width: calc(100% - 24px - 2rem); }
     }
   }
