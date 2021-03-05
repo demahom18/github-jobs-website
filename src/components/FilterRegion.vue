@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <div class="modal-wrapper" v-if="modalOpen" @click="modalOpen=false"></div>
   <div class="filter round">
     <form @submit.prevent="handleSubmit(form)">
       <div class="filter-by-name round">
@@ -10,12 +12,12 @@
           v-model="form.searchText"
           placeholder="Filter by title, company, expertise..."
         />
-        <svg class="icon-filter" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M19.108 0H.86a.86.86 0 00-.764.455.833.833 0 00.068.884l6.685 9.202.007.01c.242.32.374.708.375 1.107v7.502a.825.825 0 00.248.594.865.865 0 00.942.18l3.756-1.4c.337-.1.56-.41.56-.784v-6.092c0-.399.132-.787.375-1.108l.007-.009 6.685-9.202c.19-.26.217-.6.068-.884A.86.86 0 0019.108 0z" fill="#5964E0" fill-rule="nonzero"/></svg>
+        <svg @click="modalOpen=!modalOpen" class="icon-filter" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M19.108 0H.86a.86.86 0 00-.764.455.833.833 0 00.068.884l6.685 9.202.007.01c.242.32.374.708.375 1.107v7.502a.825.825 0 00.248.594.865.865 0 00.942.18l3.756-1.4c.337-.1.56-.41.56-.784v-6.092c0-.399.132-.787.375-1.108l.007-.009 6.685-9.202c.19-.26.217-.6.068-.884A.86.86 0 0019.108 0z" fill="#5964E0" fill-rule="nonzero"/></svg>
       </div>
       <div :class="{ modal: modalOpen, filter__right: !modalOpen }">
         <div class="filter-by-location">
           <!-- eslint-disable-next-line vue/max-attributes-per-line -->
-          <svg width="17" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.358 2.451A8.3 8.3 0 008.448 0a8.3 8.3 0 00-5.911 2.451c-2.922 2.925-3.285 8.427-.786 11.76l6.697 9.683 6.687-9.669c2.508-3.347 2.145-8.85-.777-11.774zm-5.833 8.894a3.057 3.057 0 01-3.051-3.054 3.057 3.057 0 013.05-3.055 3.057 3.057 0 013.052 3.055 3.057 3.057 0 01-3.051 3.054z" fill="#5964E0" fill-rule="nonzero"/></svg>
+          <svg width="20" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.358 2.451A8.3 8.3 0 008.448 0a8.3 8.3 0 00-5.911 2.451c-2.922 2.925-3.285 8.427-.786 11.76l6.697 9.683 6.687-9.669c2.508-3.347 2.145-8.85-.777-11.774zm-5.833 8.894a3.057 3.057 0 01-3.051-3.054 3.057 3.057 0 013.05-3.055 3.057 3.057 0 013.052 3.055 3.057 3.057 0 01-3.051 3.054z" fill="#5964E0" fill-rule="nonzero"/></svg>
           <input
             type="text"
             v-model="form.searchLocation"
@@ -31,10 +33,11 @@
             />
             <label for="checkbox">Full Time Only</label>
           </div>
-          <div><button class="btn btn--violet round">Search</button></div>
+          <div><button class="btn btn--violet round" @click="modalOpen=false">Search</button></div>
         </div>
       </div>
     </form>
+  </div>
   </div>
 </template>
 
@@ -77,8 +80,11 @@ export default {
   background: white;
   width: min(80vw, 1200px);
   height: 80px;
-  position: relative;
   margin: 0 auto;
+  position: relative;
+  z-index: 10;
+
+  ::placeholder {font-size: 1rem;}
 
   form,
   &-by-name {
@@ -167,4 +173,59 @@ body.dark .filter {
   }
   ::placeholder { color: style.$var-gray;}
 }
+
+/** Modal */
+
+.filter .modal {
+  position: fixed;
+  width: min(400px, 90vw);
+  left: 50%;
+  transform: translate(-50%, 100%);
+  height: 220px;
+  display: grid;
+  place-content: center;
+  background: white;
+  border-radius: 6px;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  > * {
+    width: 100%;
+    padding: 1rem 1rem 1.3rem;
+  }
+
+  .filter-by-location {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid style.$var-gray-light;
+    &, input { border-radius: 0 !important;}
+    input[type="text"] {
+      width: 100%;
+    }
+  }
+
+  .filter-by-fulltime {
+    padding: 1rem 2rem;
+
+    > div { margin: 0 0 1rem;}
+
+    label { margin: 0 1rem;}
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+.modal-wrapper {
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($color: #000000, $alpha: .5);
+  z-index: 10;
+}
+
 </style>
