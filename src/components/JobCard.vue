@@ -132,7 +132,10 @@ body.dark {
     &:hover {
       box-shadow: 10px 15px 0 style.$var-violet;
     }
-    .logo { box-shadow: 0 0 10px style.$var-midnight; }
+    .logo {
+      box-shadow: 0 0 10px style.$var-midnight;
+      color: style.$var-violet
+    }
   }
 }
 

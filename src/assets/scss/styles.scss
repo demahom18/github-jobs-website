@@ -9,6 +9,10 @@ body {
   overflow-x: hidden;
   margin: 0 auto;
   background: v.$gray-light;
+  &.dark  {
+    background: v.$midnight;
+    color: white;
+  }
 }
 
 * {
@@ -29,9 +33,4 @@ a {
   color: v.$violet;
 }
 
-@media (prefers-color-scheme: dark) {
-  body.dark  {
-    background: v.$midnight;
-    color: white;
-  }
-}
+
