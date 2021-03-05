@@ -25,17 +25,35 @@
           type="checkbox"
           v-model="form.fulltimeChecked"
           id="checkbox"
-        >
+        />
         <label for="checkbox">Full Time Only</label>
       </div>
       <div><button class="btn btn--violet round">Search</button></div>
+      <FilterModal v-if="modalOpen">
+        <template #location>
+          <input
+            type="text"
+            v-model="form.searchLocation"
+            placeholder="Filter by location..."
+          />
+        </template>
+        <template #fulltime>
+          <input
+            type="checkbox"
+            v-model="form.fulltimeChecked"
+            id="checkbox"
+          />
+        </template>
+      </FilterModal>
     </form>
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+import FilterModal from './FilterModal.vue'
 export default {
+  components: { FilterModal },
   setup (props, { emit }) {
     const form = reactive({
       searchText: '',
@@ -43,6 +61,7 @@ export default {
       fulltimeChecked: false
     })
 
+    const modalOpen = ref(false)
     const handleSubmit = (form) => {
       const isInvalid = Object.values(form).every(field => !field)
       if (isInvalid) return
@@ -56,6 +75,7 @@ export default {
 
     return {
       form,
+      modalOpen,
       handleSubmit
     }
   }
