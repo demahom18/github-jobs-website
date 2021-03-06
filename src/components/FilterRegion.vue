@@ -176,20 +176,24 @@ export default {
       order: 3;
       height: 60%;
       margin-right:1rem;
-      background: style.$var-violet;
+      background: style.$var-violet !important;
       align-self: center;
       border-radius: 6px;
       cursor: pointer;
 
-      svg { transform: translate(2px, 50%) }
+      svg { transform: translate(2px, 50%); background: transparent !important; }
       path { fill: white}
 
       &:hover {
-        background: style.$var-violet-light;
+        background: style.$var-violet-light !important;
         path { fill: white;}
       }
     }
 }
+
+  body.dark .filter-by-name .search-icon {
+    background: style.$var-violet;
+  }
 }
 
 body.dark .filter {
