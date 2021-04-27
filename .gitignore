@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+#design fils
+github-jobs-Design
 
 # local env files
 .env.local

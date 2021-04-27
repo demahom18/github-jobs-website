@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+
 const jobs = ref(null)
 const onLoading = ref(false)
 const error = ref(null)
@@ -10,11 +11,10 @@ const baseUrl = 'https://cors.bridged.cc/https://jobs.github.com/positions.json'
  * @returns {Object} The jobs data or an error msg
  */
 const fetchJobs = (url) => {
-  //  Init values
+  // Init values
   onLoading.value = true
   jobs.value = null
   error.value = null
-
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -31,6 +31,8 @@ const fetchJobs = (url) => {
       console.error('Can\'t fetch data', err)
       return { jobs, error, onLoading }
     })
+  // console.table(jobs.value, error.value, onLoading.value)
+  return { jobs, error, onLoading }
 }
 
 /**
@@ -42,8 +44,8 @@ const fetchJobs = (url) => {
  */
 const filterJobs = (text = '', loc = '', ft = '') => {
   const url = baseUrl + `?description=${text}&location=${loc}&full_time=${ft}`
-  fetchJobs(url)
+  const { jobs, onLoading, error } = fetchJobs(url)
   return { jobs, onLoading, error }
 }
 
-export default filterJobs
+export { fetchJobs, filterJobs }

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import filterJobs from '../composables/filterJobs'
+import { filterJobs } from '../composables/filterJobs'
 import FilterRegion from '../components/FilterRegion.vue'
 import JobList from '../components/JobList.vue'
 import { computed } from 'vue'
@@ -30,9 +30,14 @@ export default {
     })
 
     const handleFilter = (res) => {
-      const { jobs } = filterJobs(res.text, res.loc, res.ft)
+      console.log(res)
+      const { jobs, error, onLoading } = filterJobs(res.text, res.loc, res.ft)
+      if (error.value) {
+        error.value = 'No jobs found'
+        return error
+      }
       jobsToShow.value = jobs
-      return { jobsToShow }
+      return { jobsToShow, error, onLoading }
     }
 
     return {
