@@ -1,6 +1,10 @@
 <template>
   <div v-if="jobs && jobs.length === 0" class="error">
     <h3>No Jobs found !</h3>
+    <p>
+        Unfortunately Github announced on <a href="https://github.blog/changelog/2021-04-19-deprecation-notice-github-jobs-site/">this post</a>
+        the deprecation of the <a href="https://jobs.github.com/">Github jobs website</a> and therefore there's no jobs published on the API
+    </p>
   </div>
   <div class="job-list" v-if="jobs && jobs.length > 0">
      <JobCard
@@ -55,7 +59,17 @@ export default {
   )
 }
 
+.error {
+    flex-direction: column;
+    > * {
+        flex-basis: 0;
+        max-width: 500px;
+        line-height: 1.5;
+    }
+
+}
+
 @media only screen and (max-width: 850px) and (min-width: 700px) {
- .job-list > * { flex-basis: 330px;}
+ .job-list > *:not(.error) { flex-basis: 330px;}
 }
 </style>

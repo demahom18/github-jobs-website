@@ -3,7 +3,9 @@ import { ref } from 'vue'
 const jobs = ref(null)
 const onLoading = ref(false)
 const error = ref(null)
-const baseUrl = 'https://cors.bridged.cc/https://jobs.github.com/positions.json'
+
+// Deprecated
+const baseUrl = '' /** 'https://cors.bridged.cc/https://jobs.github.com/positions.json' */
 
 /**
  * Filter data from the github job api
@@ -18,20 +20,21 @@ const fetchJobs = (url) => {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      jobs.value = data
+      jobs.value = [] // Return jobs = [] and error = null to handle only one case
       onLoading.value = false
       error.value = null
 
       return { jobs, error, onLoading }
     })
     .catch(err => {
-      jobs.value = null
+    //  Return jobs = [] and error = null to handle only one case
+      jobs.value = []
       onLoading.value = false
-      error.value = 'Can\' fetch data. Please try again in 30s'
+      error.value = null // 'Can\' fetch data. Please try again in 30s'
       console.error('Can\'t fetch data', err)
       return { jobs, error, onLoading }
     })
-  // console.table(jobs.value, error.value, onLoading.value)
+
   return { jobs, error, onLoading }
 }
 
